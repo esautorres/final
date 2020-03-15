@@ -4,7 +4,8 @@
     </div>
 
     <div class="col-sm-3">
-        <h2><%= @event[:date] %></h2>
+        <h2><i class="far fa-calendar-alt"></i>
+        <%= @event[:date] %></h2>
     </div>
 
     <div class="col-sm-2">
@@ -25,7 +26,6 @@
     
     <div class="col-sm-9">
         <p><%= @event[:description] %></p>
-        <img src="ultra.jpg" class="card-img-top" alt="...">
             <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">FestivAll Benefits</h5>
@@ -47,7 +47,14 @@
 
     <div class="col-sm-3">
         <div>
-            <h3>How many reservations so far?</h3>
+            <iframe
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw
+                &q=33.6783675,-116.2393715&zoom=10" allowfullscreen>
+            </iframe>
+        </div>
+        <div>
+            <h3>Confirmed reservations:</h3>
             <p><%= @going_count %></p>
         </div>
         <div>

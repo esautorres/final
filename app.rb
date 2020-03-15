@@ -18,6 +18,12 @@ events_table = DB.from(:events)
 rsvps_table = DB.from(:rsvps)
 users_table = DB.from(:users)
 
+#Twilio API
+account_sid = "AC98e60e0bb63b2572d4e1e5813d50de38"
+auth_token = "76db1bf714b419bb6258833dd61fe071"
+client = Twilio::REST::Client.new(account_sid, auth_token)
+
+
 before do
     @current_user = users_table.where(id: session["user_id"]).to_a[0]
 end 
@@ -41,12 +47,14 @@ end
 
 get "/events/:id" do
     puts "params: #{params}"
-    
+
     @users_table = users_table
     @event = events_table.where(id: params[:id]).to_a[0]
     pp @event
+
     @rsvps = rsvps_table.where(event_id: @event[:id]).to_a
-    @going_count = rsvps_table.where(going: 1).count
+    @going_count = rsvps_table.where(event_id: @event[:id], going: true).count
+
     view "event"
 end
 
@@ -77,11 +85,18 @@ get "/events/:id/rsvps/create" do
         billing_name: params["billing_name"],
         billing_address: params["billing_address"],
         comments: params["comments"], 
-        going: params["going"], 
-        cc_number: BCrypt::Password.create(params["cc_number"])
+        going: params["going"]
+    )
+
+    client.messages.create(
+        from: "+17479980106", 
+        to: "+17142714477",
+        body: "Congrats! Your FestivAll reservation is confirmed. Be on the look out for instructions to finalize payment."
     )
     view "create_rsvp"
 end
+
+
 
 get "/users/new" do
     view "new_user"
@@ -130,7 +145,7 @@ get "/logout" do
     view "logout"
 end
 
-#week 10 in-class 
+# display the rsvp form (aka "edit")
 get "/rsvps/:id/edit" do
     puts "params: #{params}"
 
@@ -139,6 +154,7 @@ get "/rsvps/:id/edit" do
     view "edit_rsvp"
 end
 
+# receive the submitted rsvp form (aka "update")
 post "/rsvps/:id/update" do
     puts "params: #{params}"
 
@@ -147,7 +163,8 @@ post "/rsvps/:id/update" do
     # find the rsvp's event
     @event = events_table.where(id: @rsvp[:event_id]).to_a[0]
 
-    if @current_user && @current_user[:id] == @rsvp[:id]
+    if @current_user && session["user_id"] = @rsvp[:id]
+    
         rsvps_table.where(id: params["id"]).update(
             going: params["going"],
             comments: params["comments"]

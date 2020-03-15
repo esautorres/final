@@ -12,7 +12,6 @@ DB.create_table! :events do
   String :date
   String :location
   String :price
-  String :img_url
 end
 DB.create_table! :rsvps do
   primary_key :id
@@ -21,7 +20,6 @@ DB.create_table! :rsvps do
   Boolean :going
   String :billing_name
   String :billing_address
-  String :cc_number
   String :comments, text: true
 end
 DB.create_table! :users do
@@ -38,36 +36,31 @@ events_table.insert(title: "Coachella",
                     description: "The Coachella Valley Music and Arts Festival is an annual music and arts festival held at the Empire Polo Club.",
                     date: "April 10-12",
                     location: "Indio, CA", 
-                    price: "$1,000",
-                    img_url: "https://www.dropbox.com/s/9kfvm7gztcees4k/coachella.png?dl=0")
+                    price: "$1,000")
 
 events_table.insert(title: "EDC", 
                     description: "EDC is the largest electronic dance music festival in North America.",
                     date: "May 15-17",
                     location: "Las Vegas, NV",
-                    price: "$925",
-                    img_url: "https://www.dropbox.com/s/artb5hjat5yqvet/edc.jpg?dl=0")
+                    price: "$925")
 
 events_table.insert(title: "Outside Lands", 
                     description: "The Outside Lands Music and Arts Festival is a music festival featuring a diverse selection of artists.",
                     date: "August 7-9",
                     location: "San Francisco, CA", 
-                    price: "$900",
-                    img_url: "https://www.dropbox.com/s/zcr2tvsx2ry5uz1/outsidelands.jpg?dl=0")
+                    price: "$900")
 
 events_table.insert(title: "Stagecoach", 
                     description: "The Stagecoach Festival is an outdoor country music festival held at the Empire Polo Club.",
                     date: "April 24-26",
                     location: "Indio, CA",
-                    price: "$975",
-                    img_url: "https://www.dropbox.com/s/hj2ljzmptwatfcb/stagecoach.jpg?dl=0")
+                    price: "$975")
 
 events_table.insert(title: "Ultra", 
                     description: "Ultra Music Festival is an annual outdoor electronic music festival featuring some of the best DJ's in the world.",
                     date: "March 20-21",
                     location: "Miami, FL", 
-                    price: "$1,125", 
-                    img_url: "https://www.dropbox.com/s/3w7gm6lto9aaqmr/ultra.jpg?dl=0")
+                    price: "$1,125")
 
 
 puts "Success"

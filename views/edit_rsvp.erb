@@ -1,7 +1,13 @@
-<h2>
-    <i class="far fa-calendar-alt"></i>
-    <%= @event[:date] %>
-</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <h1>Edit RSVP for <%= @event[:title] %></h1>
+    </div>
+
+    <div class="col-sm-6">
+        <h2><i class="far fa-calendar-alt"></i>
+        <%= @event[:date] %></h2>
+    </div>
+</div>
 <h1>Edit RSVP for <%= @event[:title] %></h1>
 
 <form action="/rsvps/<%= @rsvp[:id] %>/update" method="post">
