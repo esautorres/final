@@ -1,0 +1,8 @@
+.jumbotron {
+    background-attachment: fixed;
+    background-image: url(ultra.jpg);
+    background-size: cover;
+    background-position: bottom;
+    color: white;
+    text-shadow: 3px 3px 3px black;
+  }

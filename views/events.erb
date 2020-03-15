@@ -1,0 +1,29 @@
+<div class="container">
+<div class="row">
+    <div class="col-sm-3">
+        <h1>Festival</h1>
+            <% for event in @events %>
+                <p><a href="/events/<%= event[:id] %>"><%= event[:title] %></a></p>
+            <% end %>
+    </div>
+    <div class="col-sm-3">
+        <h1>Dates</h1>
+            <% for event in @events %>
+                <p><a><%= event[:date] %></a></p>
+            <% end %>
+    </div>
+    <div class="col-sm-3">
+        <h1>Location</h1>
+            <% for event in @events %>
+                <p><a><%= event[:location] %></a></p>
+            <% end %>
+    </div>
+    <div class="col-sm-3">
+        <h1>Price</h1>
+            <% for event in @events %>
+                <p><a><%= event[:price] %></a></p>
+            <% end %>
+    </div>
+
+</div>
+</div>

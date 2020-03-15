@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-sm-4">
+        <h1><%= @event[:title] %></h1>
+    </div>
+
+    <div class="col-sm-3">
+        <h2><%= @event[:date] %></h2>
+    </div>
+
+    <div class="col-sm-2">
+        <h2><%= @event[:price] %></h2>
+    </div>
+
+    <div class="col-sm-3">
+        <% if @current_user %>
+            <a href="/events/<%= @event[:id] %>/rsvps/new" class="btn btn-success">Buy Package</a>
+        <% else %>
+            <a href="/logins/new" class="btn btn-primary">Sign In</a>
+        <% end %>
+        <!-- id already made purchase, don't show Buy Package button -->
+    </div>
+    
+
+    
+    <div class="col-sm-9">
+        <p><%= @event[:description] %></p>
+        <img src="<%= @event[:img_url] %>" class="card-img-top" alt="...">
+            <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">FestivAll Benefits</h5>
+                <p>Enjoy a weekend listening to your favorite artists, and let us take care of housing, food, and transportation. We design an upscale, hostel-like experience that allows you to share and make new friends at <%= @event[:title] %>.</p>
+            </div>
+            </div>
+
+           <div class="card mb-3">
+           <div class="card-body">
+                <h5 class="card-title">What's included for <%= @event[:price] %></h5>
+                <p><%= @event[:title] %> weekend pass</p>
+                <p>Shared housing with up to 12 other people</p> 
+                <p>Reservation of 1 twin-size bed</p> 
+                <p>Breakfast and lunch</p> 
+                <p>Transportation to-from venue</p>
+                </div> 
+                </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div>
+            <h3>How many reservations so far?</h3>
+            <p><%= @going_count %></p>
+        </div>
+        <div>
+            <h3>Comments</h3>
+        </div>
+        <div>
+            <% for rsvp in @rsvps %>
+                <div>
+                    <%= rsvp[:comments] %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+</div>
