@@ -12,19 +12,20 @@
     </div>
 
     <div class="col-sm-3">
+        <!-- if already made purchase, don't show Buy Package button -->
         <% if @current_user %>
             <a href="/events/<%= @event[:id] %>/rsvps/new" class="btn btn-success">Buy Package</a>
         <% else %>
             <a href="/logins/new" class="btn btn-primary">Sign In</a>
         <% end %>
-        <!-- id already made purchase, don't show Buy Package button -->
+
     </div>
     
 
     
     <div class="col-sm-9">
         <p><%= @event[:description] %></p>
-        <img src="<%= @event[:img_url] %>" class="card-img-top" alt="...">
+        <img src="ultra.jpg" class="card-img-top" alt="...">
             <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">FestivAll Benefits</h5>
@@ -54,10 +55,23 @@
         </div>
         <div>
             <% for rsvp in @rsvps %>
-                <div>
+            <div class="media">
+                
+                <div class="media-body">
+                    <h5 class="mt-0">
+                        <%= @users_table.where(id: rsvp[:user_id]).to_a[0][:name] %>
+
+                        <small>
+                            <!-- only show these links if it's my rsvp -->
+                            <% if @current_user && @current_user[:id] == rsvp[:user_id] %>
+                                (<a href="/rsvps/<%= rsvp[:id] %>/edit">edit</a> | <a href="/rsvps/<%= rsvp[:id] %>/destroy">delete</a>)
+                            <% end %>
+                        </small>
+                    </h5>
                     <%= rsvp[:comments] %>
                 </div>
-            <% end %>
+            </div>
+        <% end %>
         </div>
     </div>
 

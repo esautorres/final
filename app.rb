@@ -46,7 +46,7 @@ get "/events/:id" do
     @event = events_table.where(id: params[:id]).to_a[0]
     pp @event
     @rsvps = rsvps_table.where(event_id: @event[:id]).to_a
-    @going_count = rsvps_table.where(event_id: @event[:id]).count
+    @going_count = rsvps_table.where(going: 1).count
     view "event"
 end
 
@@ -89,21 +89,23 @@ end
 
 post "/users/create" do
     puts "params: #{params}"
-    # if there's already a user with this email, skip (week 10 in-class):
-    #existing_user = users.table.where(email: params["email"]).to_a[0]
-    #if existing_user
-       # view "error"
-    #else
-    #week 9 in-class    
-    users_table.insert(         #this inserts the data that is input into the 'new_user.erb' 
-        #note that no 'id' is required, since no association is required
-        name: params["name"],
-        email: params["email"], 
-        password: BCrypt::Password.create(params["password"])
-    )
-    view "create_user"
+
+    # if there's already a user with this email, skip!
+    existing_user = users_table.where(email: params["email"]).to_a[0]
+    if existing_user
+        view "error"
+    else
+        users_table.insert(
+            name: params["name"],
+            email: params["email"],
+            password: BCrypt::Password.create(params["password"])
+        )
+
+        redirect "/logins/new"
+    end
 end
 
+# display the login form (aka "new")
 get "/logins/new" do
     view "new_login"
 end
@@ -140,16 +142,21 @@ end
 post "/rsvps/:id/update" do
     puts "params: #{params}"
 
+    # find the rsvp to update
     @rsvp = rsvps_table.where(id: params["id"]).to_a[0]
+    # find the rsvp's event
     @event = events_table.where(id: @rsvp[:event_id]).to_a[0]
-    #if @current_user && @current_user[:id] == @rsvp[:id]
-    #rsvps_table.where(id:params["id"]).update(
-        #going: params["going"],
-       # comments: params["comments"]
-   # )
-   # view "update_rsvp"
-    #else
-    #view "error"
+
+    if @current_user && @current_user[:id] == @rsvp[:id]
+        rsvps_table.where(id: params["id"]).update(
+            going: params["going"],
+            comments: params["comments"]
+        )
+
+        redirect "/events/#{@event[:id]}"
+    else
+        view "error"
+    end
 end
 
 get "/rsvps/:id/destroy" do

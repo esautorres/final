@@ -39,35 +39,35 @@ events_table.insert(title: "Coachella",
                     date: "April 10-12",
                     location: "Indio, CA", 
                     price: "$1,000",
-                    img_url: "https://drive.google.com/open?id=1hAQUmZ7eo3rUjUEIJH8zg8jA3tic-NG3")
+                    img_url: "https://www.dropbox.com/s/9kfvm7gztcees4k/coachella.png?dl=0")
 
 events_table.insert(title: "EDC", 
                     description: "EDC is the largest electronic dance music festival in North America.",
                     date: "May 15-17",
                     location: "Las Vegas, NV",
                     price: "$925",
-                    img_url: "https://drive.google.com/open?id=13scCjWZ4Vm_LvtVPfzK2T01cEQlMZXWx")
+                    img_url: "https://www.dropbox.com/s/artb5hjat5yqvet/edc.jpg?dl=0")
 
 events_table.insert(title: "Outside Lands", 
                     description: "The Outside Lands Music and Arts Festival is a music festival featuring a diverse selection of artists.",
                     date: "August 7-9",
                     location: "San Francisco, CA", 
                     price: "$900",
-                    img_url: "https://drive.google.com/open?id=17fkyI_LW7MmBCudU4yZd5eiq6umtm5Wp")
+                    img_url: "https://www.dropbox.com/s/zcr2tvsx2ry5uz1/outsidelands.jpg?dl=0")
 
 events_table.insert(title: "Stagecoach", 
                     description: "The Stagecoach Festival is an outdoor country music festival held at the Empire Polo Club.",
                     date: "April 24-26",
                     location: "Indio, CA",
                     price: "$975",
-                    img_url: "https://drive.google.com/open?id=1UvLi7FzA_xKPx6mTR97WR0Uqzfb3_wIu")
+                    img_url: "https://www.dropbox.com/s/hj2ljzmptwatfcb/stagecoach.jpg?dl=0")
 
 events_table.insert(title: "Ultra", 
                     description: "Ultra Music Festival is an annual outdoor electronic music festival featuring some of the best DJ's in the world.",
                     date: "March 20-21",
                     location: "Miami, FL", 
                     price: "$1,125", 
-                    img_url: "https://drive.google.com/open?id=1ioCZVpY6csOSYQVAdJkKh6HGZpL1P7oj")
+                    img_url: "https://www.dropbox.com/s/3w7gm6lto9aaqmr/ultra.jpg?dl=0")
 
 
 puts "Success"
